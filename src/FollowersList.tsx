@@ -14,18 +14,24 @@ const FollowersList = (props: { followersUrl: string }) => {
     }, [followersUrl]);
 
     return (
-        <div>
-            {!followersList.length && <p>No followers found.</p>}
-            {!!followersList.length &&
-                followersList.map(follower =>
-                    <div key={follower.id} className="follower">
-                        <img src={follower.avatar_url} alt={follower.login} />
-                        <h3><a href={follower.html_url} target="_blank" rel="noreferrer">{follower.login}</a></h3>
-                    </div>
-                )
-            }
-        </div>
-    );
+		<div className="follower-container">
+			{!followersList.length && <p>No followers found.</p>}
+			{!!followersList.length &&
+				followersList.map((follower) => (
+					<div key={follower.id} className="follower">
+						<img src={follower.avatar_url} alt={follower.login} />
+						<h3>
+							<a
+								href={follower.html_url}
+								target="_blank"
+								rel="noreferrer">
+								{follower.login}
+							</a>
+						</h3>
+					</div>
+				))}
+		</div>
+	);
 };
 
 export default FollowersList;

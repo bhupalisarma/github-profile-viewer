@@ -10,7 +10,6 @@ import {
 import axios from 'axios';
 import RepositoriesList from './RepositoriesList';
 import { IGitHubUser } from './interfaces/IGitHubUser';
-import GistsList from './GistsList';
 import FollowersList from './FollowersList';
 function App() {
   const [userSearch, setUserSearch] = useState<string>('');
@@ -42,10 +41,6 @@ function App() {
             <li>
               {!foundUser && <span>Repositories</span>}
               {foundUser && <Link to="/repos">Repositories</Link>}
-            </li>
-            <li>
-              {!foundUser && <span>Gists</span>}
-              {foundUser && <Link to="/gists">Gists</Link>}
             </li>
             <li>
               {!foundUser && <span>Followers</span>}
@@ -81,13 +76,6 @@ function App() {
               <h2>Repositories</h2>
               {foundUser
                 ? <RepositoriesList repositoriesUrl={foundUser.repos_url}></RepositoriesList>
-                : <Redirect to="/"></Redirect>
-              }
-            </Route>
-            <Route path="/gists">
-              <h2>Gists</h2>
-              {foundUser
-                ? <GistsList gistsUrl={foundUser.gists_url}></GistsList>
                 : <Redirect to="/"></Redirect>
               }
             </Route>
